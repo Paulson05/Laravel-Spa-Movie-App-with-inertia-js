@@ -11,7 +11,7 @@ class Season extends Model
     use HasFactory;
 
     protected $fillable = ['tmdb_id', 'name', 'slug', 'poster_path', 'tv_show_id', 'season_number'];
-    protected $table = 'sessions';
+    protected $table = 'seasons';
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;

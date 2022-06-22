@@ -14,6 +14,7 @@ class SeasonController extends Controller
 {
     public function index(TvShow $tvShow)
     {
+
         $perPage = Request::input('perPage') ?: 5;
 
         return Inertia::render('TvShows/Seasons/Index', [
@@ -48,13 +49,13 @@ class SeasonController extends Controller
             return Redirect::back()->with('flash.banner', 'Season created.');
         } else {
             return Redirect::back()->with('flash.banner', 'Api error.');
-        }      
+        }
     }
 
     public function edit(TvShow $tvShow, Season $season)
     {
         return Inertia::render('TvShows/Seasons/Edit', [
-            'tvShow' => $tvShow, 
+            'tvShow' => $tvShow,
             'season' => $season
         ]);
     }

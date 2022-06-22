@@ -26,7 +26,7 @@ class Movie extends Model implements Searchable
         'backdrop_path',
         'slug'
     ];
-protected $table = 'movie';
+//protected $table = 'movies';
     public function getSearchResult(): SearchResult
     {
         $url = route('movies.show', $this->slug);

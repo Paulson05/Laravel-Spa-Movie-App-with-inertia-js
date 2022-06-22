@@ -24,7 +24,7 @@ class TvShow extends Model implements Searchable
             $url
         );
     }
- 
+
     public function setNameAttribute($value)
     {
         $this->attributes['name'] = $value;

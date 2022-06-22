@@ -184,4 +184,45 @@ import TableHead from "@/Components/TableHead";
 import TableRow from "@/Components/TableRow";
 import ButtonLink from "@/Components/ButtonLink";
 
+const props = defineProps({
+  tvShow: Object,
+  seasons: Object,
+  filters: Object,
+});
+
+const search = ref(props.filters.search);
+const perPage = ref(props.filters.perPage);
+const seasonNumber = ref("");
+
+watch(search, (value) => {
+  Inertia.get(
+    `/admin/tv-shows/${props.tvShow.id}/seasons`,
+    { search: value, perPage: perPage.value },
+    {
+      preserveState: true,
+      replace: true,
+    }
+  );
+});
+
+function getSeasons() {
+  Inertia.get(
+    `/admin/tv-shows/${props.tvShow.id}/seasons`,
+    { perPage: perPage.value, search: search.value },
+    {
+      preserveState: true,
+      replace: true,
+    }
+  );
+}
+
+function generateSeason() {
+  Inertia.post(
+    `/admin/tv-shows/${props.tvShow.id}/seasons`,
+    { seasonNumber: seasonNumber.value },
+    {
+      onFinish: () => (seasonNumber.value = ""),
+    }
+  );
+}
 </script>

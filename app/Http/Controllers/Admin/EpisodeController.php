@@ -50,7 +50,7 @@ class EpisodeController extends Controller
             return Redirect::back()->with('flash.banner', 'Episode created.');
         } else {
             return Redirect::back()->with('flash.banner', 'Api error.');
-        }    
+        }
     }
 
     public function edit(TvShow $tvShow, Season $season, Episode $episode)
@@ -71,7 +71,7 @@ class EpisodeController extends Controller
         ]);
         $episode->update($validated);
         return Redirect::route('admin.episodes.index', [$tvShow->id, $season->id])->with('flash.banner', 'Episode updated.');
- 
+
     }
 
     public function destroy(TvShow $tvShow, Season $season, Episode $episode)

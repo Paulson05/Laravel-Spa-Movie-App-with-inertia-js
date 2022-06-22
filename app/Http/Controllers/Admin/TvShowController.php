@@ -13,6 +13,7 @@ class TvShowController extends Controller
 {
     public function index()
     {
+
         $perPage = Request::input('perPage') ?: 5;
 
         return Inertia::render('TvShows/Index', [
@@ -36,6 +37,7 @@ class TvShowController extends Controller
         $tmdb_tv = Http::asJson()->get(config('services.tmdb.endpoint') . 'tv/' . Request::input('tvShowTMDBId') . '?api_key=' . config('services.tmdb.secret') . '&language=en-US');
         if ($tmdb_tv->successful()) {
             TvShow::create([
+                'tv_show_id'=>$tvShow->id,
                 'tmdb_id' => $tmdb_tv['id'],
                 'name'    => $tmdb_tv['name'],
                 'poster_path' => $tmdb_tv['poster_path'],
@@ -44,7 +46,7 @@ class TvShowController extends Controller
             return Redirect::back()->with('flash.banner', 'Tv Show created.');
         } else {
             return Redirect::back()->with('flash.banner', 'Api error.');
-        }      
+        }
     }
 
     public function edit(TvShow $tvShow)
