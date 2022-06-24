@@ -174,15 +174,9 @@
               </div>
               <form @submit.prevent="addCast">
                 <multiselect
-                  v-model="castForm.casts"
-                  :options="casts"
-                  :multiple="true"
-                  :close-on-select="false"
-                  :clear-on-select="false"
-                  :preserve-search="true"
-                  placeholder="Add Casts"
-                  label="name"
-                  track-by="name"
+                  v-model="value"
+                  :options="options"
+
                 ></multiselect>
                 <div class="mt-2">
                   <JetButton>add casts</JetButton>
@@ -204,17 +198,12 @@
                 </div>
               </div>
               <form @submit.prevent="addTag">
+            <div>
                 <multiselect
-                  v-model="tagForm.tags"
-                  :options="tags"
-                  :multiple="true"
-                  :close-on-select="false"
-                  :clear-on-select="false"
-                  :preserve-search="true"
-                  placeholder="Add tags"
-                  label="tag_name"
-                  track-by="tag_name"
-                ></multiselect>
+                    v-model="selected"
+                    :options="options">
+                </multiselect>
+            </div>
                 <div class="mt-2">
                   <JetButton>add tags</JetButton>
                 </div>
@@ -288,8 +277,9 @@ function addTag() {
     preserveScroll: true,
   });
 }
+const value  = ref("");
+const options =  ['list', 'of', 'options'];
 </script>
-<!--<style src="vue-multiselect/dist/vue-multiselect.css"></style>-->
 
-<style>
-</style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+

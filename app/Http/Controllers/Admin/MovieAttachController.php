@@ -16,6 +16,7 @@ class MovieAttachController extends Controller
 {
     public function index(Movie $movie)
     {
+
         return Inertia::render('Movies/Attach', [
             'movie' => $movie,
             'trailers' => $movie->trailers,
